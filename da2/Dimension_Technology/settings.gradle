@@ -1,0 +1,2 @@
+rootProject.name='Dimension_Technology'
+include ':app'
