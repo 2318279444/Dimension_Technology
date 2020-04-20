@@ -1,64 +1,56 @@
-package com.wd.tech.activit.zcdl;
+package com.wd.tech;
 
-import android.content.Intent;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.wd.tech.MainActivity;
-import com.wd.tech.R;
-import com.wd.tech.Regist;
+import com.wd.tech.bean.dlzc.DlBean;
+import com.wd.tech.bean.dlzc.ZcBean;
 import com.wd.tech.mvp.MyUrl;
 import com.wd.tech.mvp.base.BaseActivity;
 import com.wd.tech.mvp.base.BasePresenter;
 import com.wd.tech.mvp.presenter.PresenterImpl;
 import com.wd.tech.rsa.RsaCoder;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import com.wd.tech.bean.dlzc.DlBean;
+public class Regist extends BaseActivity {
+    EditText phone,name,pwd;
 
-public class Login extends BaseActivity {
-    EditText phone ,pwd;
-    Button dl;
-    private String sspwd;
-    TextView kszc;
+    TextView ca_lo;
 
-    List<DlBean.ResultBean> list=new ArrayList<>();
-    private String headPic;
-    private String status;
+    Button zc;
     private String sphone;
     private String spwd;
-
+    private String sspwd;
+    private String sname;
 
     @Override
     protected void startCoding() {
 
-
-        kszc.setOnClickListener(new View.OnClickListener() {
+        //返回登录
+        ca_lo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Login.this, Regist.class);
-
-
-                startActivity(intent);
-
+                finish();
             }
         });
 
 
-        //登录点击事件
-        dl.setOnClickListener(new View.OnClickListener() {
+        //注册点击事件
+        zc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 sphone = phone.getText().toString().trim();
                 spwd = pwd.getText().toString().trim();
+                sname = name.getText().toString().trim();
 
                 //rsa加密
 
@@ -70,14 +62,13 @@ public class Login extends BaseActivity {
 
 
                 Map<String,Object> map=new HashMap<>();
-                map.put("phone",sphone);
-                map.put("pwd",sspwd);
-                mPresenter.startpostInfoHava(MyUrl.BASE_DL, DlBean.class,map);
+                map.put("phone", sphone);
+                map.put("pwd", sspwd);
+                map.put("nickName", sname);
+                mPresenter.startpostInfoHava(MyUrl.BASE_ZC, ZcBean.class,map);
 
             }
         });
-
-
 
 
     }
@@ -89,33 +80,28 @@ public class Login extends BaseActivity {
 
     @Override
     protected void initView() {
-        dl=findViewById(R.id.dl);
         phone=findViewById(R.id.phone);
         pwd=findViewById(R.id.pwd);
-        kszc=findViewById(R.id.kszc);
+        name=findViewById(R.id.regist_name);
+        ca_lo=findViewById(R.id.call_login);
+        zc=findViewById(R.id.zc);
     }
 
     @Override
     protected int Layout() {
-        return R.layout.activity_login;
+        return R.layout.activity_regist;
     }
 
     @Override
     public void onSuccess(Object o) {
-        if(o instanceof DlBean){
-            headPic = ((DlBean) o).getResult().getHeadPic();
-            status = ((DlBean) o).getStatus();
+        if(o instanceof ZcBean){
+            String status = ((ZcBean) o).getStatus();
             if(status.equals("0000")){
-                Toast.makeText(this, ((DlBean) o).getMessage(), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(Login.this, MainActivity.class);
-
-                startActivity(intent);
+                Toast.makeText(this, ((ZcBean) o).getMessage(), Toast.LENGTH_SHORT).show();
             }else {
-                Toast.makeText(this, ((DlBean) o).getMessage(), Toast.LENGTH_SHORT).show();
-
+                Toast.makeText(this, ((ZcBean) o).getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
-
     }
 
     @Override

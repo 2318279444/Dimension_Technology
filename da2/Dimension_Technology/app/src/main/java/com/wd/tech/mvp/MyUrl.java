@@ -13,4 +13,7 @@ public interface MyUrl {
     //登录
     String BASE_DL="techApi/user/v1/login";
 
+    //注册
+    String BASE_ZC="techApi/user/v1/register";
+
 }
