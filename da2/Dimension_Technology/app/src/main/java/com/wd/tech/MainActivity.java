@@ -9,7 +9,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +30,7 @@ public class MainActivity extends BaseActivity {
     Fragment fragment;
     TextView textView;
     ImageView tx;
+    Button button;
 
     DrawerLayout layout;
     private String s;
@@ -46,6 +49,20 @@ public class MainActivity extends BaseActivity {
 
             }
         });
+
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "111", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+
+
+
 
 
         try {
@@ -112,6 +129,8 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        button=findViewById(R.id.btn);
+
         radioGroup=findViewById(R.id.rg1);
         textView=findViewById(R.id.celaname);
         tx=findViewById(R.id.ima);
@@ -134,9 +153,11 @@ public class MainActivity extends BaseActivity {
 
     public void left(View v){
         layout.openDrawer(Gravity.LEFT);
+        layout.closeDrawer(Gravity.LEFT);/*重点，自动关闭侧边栏*/
+
     }
 
-    public void right(View view) {
-        layout.openDrawer(Gravity.RIGHT);
+    public void name(View view) {
+        Toast.makeText(this, "123", Toast.LENGTH_SHORT).show();
     }
 }

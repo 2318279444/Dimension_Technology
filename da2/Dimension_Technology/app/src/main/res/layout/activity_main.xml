@@ -4,40 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
+    android:id="@+id/drawerLayout"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!--    左侧边框-->
-    <LinearLayout
-        android:id="@+id/ll_left"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="left"
-        android:background="#fcc"
-        android:orientation="vertical">
 
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="33dp"
-            android:id="@+id/celaname"
-            android:text="12312312"/>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="200dp">
-
-            <ImageView
-                android:layout_centerInParent="true"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:id="@+id/ima"/>
-
-        </RelativeLayout>
-        
-
-    </LinearLayout>
 
 
     <LinearLayout
@@ -97,6 +68,49 @@
             />
 
     </RadioGroup>
+
+
+    </LinearLayout>
+
+
+
+
+    <!--    左侧边框-->
+    <LinearLayout
+        android:id="@+id/ll_left"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        android:background="#fcc"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="33dp"
+            android:id="@+id/celaname"
+            android:onClick="name"
+            android:text="12312312"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+            <ImageView
+                android:layout_centerInParent="true"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:id="@+id/ima"/>
+
+            <Button
+                android:id="@+id/btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="点击"
+                />
+
+        </RelativeLayout>
 
 
     </LinearLayout>

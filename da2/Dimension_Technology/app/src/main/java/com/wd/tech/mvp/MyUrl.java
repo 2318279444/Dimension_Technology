@@ -8,12 +8,9 @@ package com.wd.tech.mvp;
  */
 public interface MyUrl {
     //外网
-    String base="http://mobile.bwstudent.com/movieApi/";
+    String base="https://mobile.bwstudent.com/";
 
-    //内网
-    String base1="http://172.17.8.100/movieApi/";
-
-
-
+    //登录
+    String BASE_DL="techApi/user/v1/login";
 
 }
